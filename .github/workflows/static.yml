@@ -40,6 +40,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@badger-commerce'
       - name: Generate Docs
+        run: npm ci
+      - name: Generate Docs
         run: npm run docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
