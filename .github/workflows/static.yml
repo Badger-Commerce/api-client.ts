@@ -35,7 +35,7 @@ jobs:
         with:
           cache: 'npm'
           node-version: 16
-      - name: Generate Docs
+      - name: Install Dependencies
         run: npm ci
       - name: Generate Docs
         run: npm run docs
