@@ -55,7 +55,7 @@
   },
   "scripts": {
     "build": "tsc --p tsconfig.json",
-    "docs": "typedoc --options typedoc.json --readme none",
+    "docs": "typedoc --options typedoc.json --readme README.md --includeVersion",
     "lint:fix": "eslint . --fix",
     "lint": "eslint .",
     "prepare": "npm run build",
