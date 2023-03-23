@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/Badger-Commerce/api-client.ts/compare/v1.2.0...v1.2.1) (2023-03-23)
+
+
+### Bug Fixes
+
+* correcting generation ([1f533c0](https://github.com/Badger-Commerce/api-client.ts/commit/1f533c0a96502668d81a98b9a63dd3da9ae5eb7b))
+
 ## [1.2.0](https://github.com/Badger-Commerce/api-client.ts/compare/v1.1.1...v1.2.0) (2023-03-23)
 
 
