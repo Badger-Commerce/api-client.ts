@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/Badger-Commerce/api-client.ts/compare/v1.1.1...v1.2.0) (2023-03-23)
+
+
+### Features
+
+* ES6 compatibility, generation within the project, only push docs if new version ([fa83c01](https://github.com/Badger-Commerce/api-client.ts/commit/fa83c0184cb9b7173ce813060e8d20244b5bd5dd))
+
 ## [1.1.1](https://github.com/Badger-Commerce/api-client.ts/compare/v1.1.0...v1.1.1) (2023-03-22)
 
 
