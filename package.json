@@ -33,7 +33,8 @@
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typedoc": "^0.23.22",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "swagger-typescript-api": "^12.0.4"
   },
   "files": [
     "dist/**/*"
@@ -55,6 +56,7 @@
   },
   "scripts": {
     "build": "tsc --p tsconfig.json",
+    "generate:api" : "swagger-typescript-api -p https://api.swaggerhub.com/apis/Kedos-Consulting-Ltd/badger-commerce-api/1.0.0 -n BadgerCommerceApi -o src --axios",
     "docs": "typedoc --options typedoc.json --readme README.md --includeVersion",
     "lint:fix": "eslint . --fix",
     "lint": "eslint .",
