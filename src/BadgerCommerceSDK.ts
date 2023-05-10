@@ -3,7 +3,7 @@
 /* eslint-disable */
 import type { BaseHttpRequest } from './core/BaseHttpRequest';
 import type { OpenAPIConfig } from './core/OpenAPI';
-import { AxiosHttpRequest } from './core/AxiosHttpRequest';
+import { FetchHttpRequest } from './core/FetchHttpRequest';
 
 import { AdminService } from './services/AdminService';
 import { CheckoutService } from './services/CheckoutService';
@@ -33,7 +33,7 @@ export class BadgerCommerceSDK {
 
     public readonly request: BaseHttpRequest;
 
-    constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = AxiosHttpRequest) {
+    constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = FetchHttpRequest) {
         this.request = new HttpRequest({
             BASE: config?.BASE ?? 'https://virtserver.swaggerhub.com/Kedos-Consulting-Ltd/badger-commerce-api/1.0.0',
             VERSION: config?.VERSION ?? '1.0.0',

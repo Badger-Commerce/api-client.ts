@@ -1,6 +1,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { AccessToken } from '../models/AccessToken';
+import type { AccessTokenRequest } from '../models/AccessTokenRequest';
+import type { AccessTokens } from '../models/AccessTokens';
 import type { Order } from '../models/Order';
 import type { OrderSearchResults } from '../models/OrderSearchResults';
 import type { Product } from '../models/Product';
@@ -11,6 +14,67 @@ import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 export class AdminService {
 
     constructor(public readonly httpRequest: BaseHttpRequest) {}
+
+    /**
+     * Gets the tokens for a BadgerSite
+     * @param siteId The siteId returned when the original site was created.
+     * @returns AccessTokens Token summary held in the DB for this site
+     * @throws ApiError
+     */
+    public getTokensForSite(
+        siteId: string,
+    ): CancelablePromise<AccessTokens> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/v1/admin/tokens/{siteId}',
+            path: {
+                'siteId': siteId,
+            },
+        });
+    }
+
+    /**
+     * Creates a new token for a BadgerSite
+     * @param siteId The siteId returned when the original site was created.
+     * @param requestBody
+     * @returns AccessToken Token created for this site
+     * @throws ApiError
+     */
+    public createTokenForSite(
+        siteId: string,
+        requestBody?: AccessTokenRequest,
+    ): CancelablePromise<AccessToken> {
+        return this.httpRequest.request({
+            method: 'PUT',
+            url: '/v1/admin/tokens/{siteId}',
+            path: {
+                'siteId': siteId,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * Deletes/Revokes a token for a BadgerSite
+     * @param siteId The siteId returned when the original site was created.
+     * @param tokenId The ID of the token to revoke
+     * @returns void
+     * @throws ApiError
+     */
+    public deleteTokenForSite(
+        siteId: string,
+        tokenId: string,
+    ): CancelablePromise<void> {
+        return this.httpRequest.request({
+            method: 'DELETE',
+            url: '/v1/admin/tokens/{siteId}/{tokenId}',
+            path: {
+                'siteId': siteId,
+                'tokenId': tokenId,
+            },
+        });
+    }
 
     /**
      * Creates a new product in the catalogue

@@ -55,7 +55,9 @@
   },
   "scripts": {
     "build": "tsc --p tsconfig.json",
-    "codegen": "npx openapi-typescript-codegen -i https://api.swaggerhub.com/apis/Kedos-Consulting-Ltd/badger-commerce-api/1.0.0/swagger.yaml -o src/ --client axios --name BadgerCommerceSDK",
+    "codegen": "npx openapi-typescript-codegen -i https://api.swaggerhub.com/apis/Kedos-Consulting-Ltd/badger-commerce-api/1.0.0/swagger.yaml -o src/ --client fetch --name BadgerCommerceSDK",
+
+
     "docs": "typedoc --options typedoc.json --readme README.md --includeVersion",
     "lint:fix": "eslint . --fix",
     "lint": "eslint .",

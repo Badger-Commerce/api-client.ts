@@ -14,7 +14,7 @@ export class ProductsService {
     /**
      * Get the products contained in a collection
      * Fetches the products that are members of a collection specified by the ID in the URL
-     * @param id ID of the collection in the data store
+     * @param seoName ID of the collection in the data store
      * @param pageSize The number of results to return in a page. If it isn't specified then a configured default will be returned.
      * @param pageNumber The page of results to be returned, with a 0-based index (i.e. the first page is page 0, then page 1, 2, etc.).  Defaults to 0 if not supplied.
      * @returns Product An array of products
@@ -22,15 +22,15 @@ export class ProductsService {
      * @throws ApiError
      */
     public getProductsInCollection(
-        id: string,
+        seoName: string,
         pageSize?: number,
         pageNumber?: number,
     ): CancelablePromise<Array<Product> | any> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/public/collection/{id}/products',
+            url: '/v1/collection/{seoName}/products',
             path: {
-                'id': id,
+                'seoName': seoName,
             },
             query: {
                 'pageSize': pageSize,
@@ -61,7 +61,7 @@ export class ProductsService {
     ): CancelablePromise<Array<Product> | any> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/public/product',
+            url: '/v1/product',
             query: {
                 'upc': upc,
                 'seoName': seoName,
@@ -90,7 +90,7 @@ export class ProductsService {
     ): CancelablePromise<Product | any> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/public/product/{productSkuCode}',
+            url: '/v1/product/{productSkuCode}',
             path: {
                 'productSkuCode': productSkuCode,
             },
@@ -121,7 +121,7 @@ export class ProductsService {
     ): CancelablePromise<Product | any> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/v1/public/product/{productSkuCode}/extension/{extensionId}',
+            url: '/v1/product/{productSkuCode}/extension/{extensionId}',
             path: {
                 'productSkuCode': productSkuCode,
                 'extensionId': extensionId,

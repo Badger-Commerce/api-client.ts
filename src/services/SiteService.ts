@@ -22,7 +22,7 @@ export class SiteService {
     public getSiteContext(): CancelablePromise<SiteContext | any> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/public/site',
+            url: '/v1/site',
             errors: {
                 404: `Could not resolve a site`,
             },
@@ -39,7 +39,7 @@ export class SiteService {
     public getMenu(): CancelablePromise<Array<DisplayMenuNode> | any> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/public/site/menu',
+            url: '/v1/site/menu',
             errors: {
                 404: `Could not resolve a menu for the site`,
             },
@@ -59,7 +59,7 @@ export class SiteService {
     ): CancelablePromise<Array<MenuNode> | any> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/public/site/menu/{rootNodeId}',
+            url: '/v1/site/menu/{rootNodeId}',
             path: {
                 'rootNodeId': rootNodeId,
             },
