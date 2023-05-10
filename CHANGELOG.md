@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/Badger-Commerce/api-client.ts/compare/v1.2.1...v1.3.0) (2023-05-10)
+
+
+### Features
+
+* switch to fetch, new API updates ([5655f49](https://github.com/Badger-Commerce/api-client.ts/commit/5655f490fc1b418aaf882f2934de88c8d99eedad))
+
 ## [1.2.1](https://github.com/Badger-Commerce/api-client.ts/compare/v1.2.0...v1.2.1) (2023-03-23)
 
 
