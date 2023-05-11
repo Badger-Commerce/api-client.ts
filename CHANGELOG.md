@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/Badger-Commerce/api-client.ts/compare/v1.3.0...v1.4.0) (2023-05-11)
+
+
+### Features
+
+* new API for child collections ([5d34b97](https://github.com/Badger-Commerce/api-client.ts/commit/5d34b97793c6a859224dd19d0f7e98fad200dc81))
+
 ## [1.3.0](https://github.com/Badger-Commerce/api-client.ts/compare/v1.2.1...v1.3.0) (2023-05-10)
 
 
