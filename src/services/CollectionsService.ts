@@ -41,6 +41,34 @@ export class CollectionsService {
     }
 
     /**
+     * Get children of a collection/category
+     * Fetches the children of a category specified by the seoName for the current store.
+     * @param seoName Seo Name of the collection in the data store
+     * @param generateExtensions
+     * @returns Collection A Collection object
+     * @returns any Unexpected error
+     * @throws ApiError
+     */
+    public getCollectionChildren(
+        seoName: string,
+        generateExtensions?: boolean,
+    ): CancelablePromise<Array<Collection> | any> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/v1/collection/{seoName}/children',
+            path: {
+                'seoName': seoName,
+            },
+            query: {
+                'generateExtensions': generateExtensions,
+            },
+            errors: {
+                404: `Could not resolve a collection`,
+            },
+        });
+    }
+
+    /**
      * Handle extension submissions for a collection/category
      * Searches the catalogue for a collection with a matching SEO name/code, then triggers the extension framework
      * @param seoName SEO Name of the collection to search for
