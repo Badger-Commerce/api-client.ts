@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/Badger-Commerce/api-client.ts/compare/v1.4.0...v1.4.1) (2023-05-12)
+
+
+### Bug Fixes
+
+* added create site API ([d388484](https://github.com/Badger-Commerce/api-client.ts/commit/d388484ccbfb722e92471e9d4e01089292211109))
+
 ## [1.4.0](https://github.com/Badger-Commerce/api-client.ts/compare/v1.3.0...v1.4.0) (2023-05-11)
 
 
