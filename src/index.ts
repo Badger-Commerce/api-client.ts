@@ -18,6 +18,7 @@ export type { CardDetails } from './models/CardDetails';
 export type { Collection } from './models/Collection';
 export type { CollectionPage } from './models/CollectionPage';
 export type { CreateBasketRequest } from './models/CreateBasketRequest';
+export type { CreateSite } from './models/CreateSite';
 export type { Dimension } from './models/Dimension';
 export { DisplayMenuNode } from './models/DisplayMenuNode';
 export { DownwardLink } from './models/DownwardLink';

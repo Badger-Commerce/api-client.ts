@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { CreateSite } from '../models/CreateSite';
 import type { DisplayMenuNode } from '../models/DisplayMenuNode';
 import type { MenuNode } from '../models/MenuNode';
 import type { SiteContext } from '../models/SiteContext';
@@ -26,6 +27,24 @@ export class SiteService {
             errors: {
                 404: `Could not resolve a site`,
             },
+        });
+    }
+
+    /**
+     * Creates a site context for a new shop
+     * Creates a new site context for a shop
+     * @param requestBody
+     * @returns SiteContext A SiteContext object
+     * @throws ApiError
+     */
+    public createSite(
+        requestBody?: CreateSite,
+    ): CancelablePromise<SiteContext> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/v1/site',
+            body: requestBody,
+            mediaType: 'application/json',
         });
     }
 
