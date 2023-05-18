@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/Badger-Commerce/api-client.ts/compare/v1.4.1...v1.5.0) (2023-05-18)
+
+
+### Features
+
+* new User APIs ([5fbf716](https://github.com/Badger-Commerce/api-client.ts/commit/5fbf716700fa8b873448c6e723c304a365ac324c))
+
 ## [1.4.1](https://github.com/Badger-Commerce/api-client.ts/compare/v1.4.0...v1.4.1) (2023-05-12)
 
 
