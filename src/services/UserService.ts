@@ -1,6 +1,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { AnonymousUser } from '../models/AnonymousUser';
+import type { RegisteredUser } from '../models/RegisteredUser';
 import type { User } from '../models/User';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -11,17 +13,47 @@ export class UserService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
-     * Create a new user
-     * Creates a new user in the Badger Datastore
-     * @returns any A user was created
+     * Create a new user in the Commerce platform
+     * Creates a new user in the Badger Commerce Datastore
+     * @param requestBody
+     * @returns User A User was created
+     * @returns any Unexpected error
      * @throws ApiError
      */
-    public createUser(): CancelablePromise<any> {
+    public createUser(
+        requestBody?: RegisteredUser,
+    ): CancelablePromise<User | any> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/v1/user',
+            body: requestBody,
+            mediaType: 'application/json',
             errors: {
                 400: `The specified user data is invalid`,
+                409: `A user already exists with these details`,
+            },
+        });
+    }
+
+    /**
+     * Create a new anonymous user in the Commerce platform
+     * Creates a new anonymous user in the Badger Commerce Datastore
+     * @param requestBody
+     * @returns User A User has been created
+     * @returns any Unexpected error
+     * @throws ApiError
+     */
+    public createAnonymousUser(
+        requestBody?: AnonymousUser,
+    ): CancelablePromise<User | any> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/v1/user/anonymous',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `The specified user data is invalid`,
+                409: `A user already exists with these details`,
             },
         });
     }
@@ -35,9 +67,10 @@ export class UserService {
     public deleteUser(): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/v1/user',
+            url: '/v1/user/id',
             errors: {
-                400: `The specified user data is invalid`,
+                400: `The user header was not passed`,
+                409: `The user could not be found`,
             },
         });
     }
@@ -52,7 +85,7 @@ export class UserService {
     public findUser(): CancelablePromise<User | any> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/user',
+            url: '/v1/user/id',
             errors: {
                 400: `The specified user data is invalid`,
             },
@@ -60,34 +93,20 @@ export class UserService {
     }
 
     /**
-     * Create a secure merge token
-     * Creates a token for a user that can be used to merge this user with another
-     * @returns string A merge token was created and returned
-     * @returns any Unexpected error
-     * @throws ApiError
-     */
-    public createMergeToken(): CancelablePromise<string | any> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/v1/user/merge/token',
-        });
-    }
-
-    /**
      * Merges the user
-     * Merges another user (based on the merge token passed in) with the currently authenticated user, and de-activates the other user within the badger data store
-     * @param mergeToken
+     * Merges another user (based on the merge token passed in) with the currently specified registered user, and de-activates the other user within the badger data store
+     * @param childUserId The user ID of the account to be subsumed into the main user.
      * @returns any Users successfully merged
      * @throws ApiError
      */
     public mergeUsers(
-        mergeToken: string,
+        childUserId: string,
     ): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/v1/user/merge',
             query: {
-                'mergeToken': mergeToken,
+                'childUserId': childUserId,
             },
             errors: {
                 400: `Bad Merge Token`,
