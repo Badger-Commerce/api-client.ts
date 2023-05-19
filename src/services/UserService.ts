@@ -13,6 +13,40 @@ export class UserService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
+     * Remove a user
+     * Removes the current users details from the Badger Datastore (basically unregister/forget).
+     * @returns any user was removed
+     * @throws ApiError
+     */
+    public deleteUser(): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'DELETE',
+            url: '/v1/user',
+            errors: {
+                400: `The user header was not passed`,
+                409: `The user could not be found`,
+            },
+        });
+    }
+
+    /**
+     * Get user
+     * Retrieve the user data held in Badger about the logged in customer. The user is resolved from the JWT token passed into the call. Providing you have a token you can expect this to always return a user, whether anonymous or not.
+     * @returns User A User has been found
+     * @returns any Unexpected error
+     * @throws ApiError
+     */
+    public findUser(): CancelablePromise<User | any> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/v1/user',
+            errors: {
+                400: `The specified user data is invalid`,
+            },
+        });
+    }
+
+    /**
      * Create a new user in the Commerce platform
      * Creates a new user in the Badger Commerce Datastore
      * @param requestBody
@@ -54,40 +88,6 @@ export class UserService {
             errors: {
                 400: `The specified user data is invalid`,
                 409: `A user already exists with these details`,
-            },
-        });
-    }
-
-    /**
-     * Remove a user
-     * Removes the current users details from the Badger Datastore (basically unregister/forget).
-     * @returns any user was removed
-     * @throws ApiError
-     */
-    public deleteUser(): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'DELETE',
-            url: '/v1/user/id',
-            errors: {
-                400: `The user header was not passed`,
-                409: `The user could not be found`,
-            },
-        });
-    }
-
-    /**
-     * Get user
-     * Retrieve the user data held in Badger about the logged in customer. The user is resolved from the JWT token passed into the call. Providing you have a token you can expect this to always return a user, whether anonymous or not.
-     * @returns User A User has been found
-     * @returns any Unexpected error
-     * @throws ApiError
-     */
-    public findUser(): CancelablePromise<User | any> {
-        return this.httpRequest.request({
-            method: 'GET',
-            url: '/v1/user/id',
-            errors: {
-                400: `The specified user data is invalid`,
             },
         });
     }
