@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/Badger-Commerce/api-client.ts/compare/v1.5.0...v1.5.1) (2023-05-19)
+
+
+### Bug Fixes
+
+* error in user path ([83dd2fd](https://github.com/Badger-Commerce/api-client.ts/commit/83dd2fd2f21aae6461d2471b7ba93b0ae4e5665f))
+
 ## [1.5.0](https://github.com/Badger-Commerce/api-client.ts/compare/v1.4.1...v1.5.0) (2023-05-18)
 
 
