@@ -3,6 +3,7 @@
 /* eslint-disable */
 import type { ExtensionUpdateBody } from '../models/ExtensionUpdateBody';
 import type { Product } from '../models/Product';
+import type { ProductPage } from '../models/ProductPage';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -17,7 +18,7 @@ export class ProductsService {
      * @param seoName ID of the collection in the data store
      * @param pageSize The number of results to return in a page. If it isn't specified then a configured default will be returned.
      * @param pageNumber The page of results to be returned, with a 0-based index (i.e. the first page is page 0, then page 1, 2, etc.).  Defaults to 0 if not supplied.
-     * @returns Product An array of products
+     * @returns ProductPage An array of products
      * @returns any Unexpected error
      * @throws ApiError
      */
@@ -25,7 +26,7 @@ export class ProductsService {
         seoName: string,
         pageSize?: number,
         pageNumber?: number,
-    ): CancelablePromise<Array<Product> | any> {
+    ): CancelablePromise<ProductPage | any> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/collection/{seoName}/products',
@@ -44,12 +45,12 @@ export class ProductsService {
 
     /**
      * retrieve a product by various query parameters
-     * Retrieve product details from the current catalogue associated with the site
+     * Retrieve product details from the current catalogue associated with the site (or retrieve all)
      * @param upc UPC of the product to search for
      * @param seoName
      * @param pageNumber Page of results to return. Defaults to 1 (which is the first)
      * @param pageSize Number of results to return in each page
-     * @returns Product A list of products that match the query.
+     * @returns ProductPage A list of products that match the query.
      * @returns any Unexpected error
      * @throws ApiError
      */
@@ -58,7 +59,7 @@ export class ProductsService {
         seoName?: string,
         pageNumber?: number,
         pageSize?: number,
-    ): CancelablePromise<Array<Product> | any> {
+    ): CancelablePromise<ProductPage | any> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/product',
@@ -80,6 +81,7 @@ export class ProductsService {
      * Retrieve product details from the current catalogue associated with the site
      * @param productSkuCode
      * @param generateExtensions
+     * @param includeVariants
      * @returns Product A product object.
      * @returns any Unexpected error
      * @throws ApiError
@@ -87,6 +89,7 @@ export class ProductsService {
     public getProductBySku(
         productSkuCode: string,
         generateExtensions?: boolean,
+        includeVariants?: boolean,
     ): CancelablePromise<Product | any> {
         return this.httpRequest.request({
             method: 'GET',
@@ -96,6 +99,7 @@ export class ProductsService {
             },
             query: {
                 'generateExtensions': generateExtensions,
+                'includeVariants': includeVariants,
             },
             errors: {
                 400: `The specified product ID is invalid (not a number).`,

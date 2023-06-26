@@ -2,21 +2,14 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { BadgerBaseAttributes } from './BadgerBaseAttributes';
 import type { Dimension } from './Dimension';
-import type { ExtensionEntry } from './ExtensionEntry';
 import type { MediaItem } from './MediaItem';
 import type { TaxCodeLocales } from './TaxCodeLocales';
+import type { Variant } from './Variant';
 import type { Weight } from './Weight';
 
-export type Product = {
-    /**
-     * unique id of the product
-     */
-    id?: string;
-    /**
-     * the ID of the catalogue
-     */
-    catalogueId?: string;
+export type Product = (BadgerBaseAttributes & {
     /**
      * SKU ID of the product
      */
@@ -50,10 +43,6 @@ export type Product = {
      */
     manufacturer?: string;
     /**
-     * The use friendly, unique, name for the product, usually used in the URL of the product.
-     */
-    seoName?: string;
-    /**
      * The review score for the product
      */
     rating?: number;
@@ -70,10 +59,6 @@ export type Product = {
      */
     publishedDate?: string;
     /**
-     * Date the item was created
-     */
-    createdDate?: string;
-    /**
      * Flag indicating whether the product requires shipping
      */
     shippingRequired?: boolean;
@@ -85,10 +70,7 @@ export type Product = {
      * indicates that this is not a product that can be purchased, instead there are variants beneath this which must be purchased.
      */
     hasVariants?: boolean;
-    /**
-     * Optional data associated with the product for inclusion on the page.
-     */
-    extensionData?: Array<ExtensionEntry>;
+    variants?: Array<Variant>;
     /**
      * Mapping of tax codes to locales that apply to this product
      */
@@ -105,5 +87,5 @@ export type Product = {
      * UPC of the product
      */
     upc?: string;
-};
+});
 

@@ -2,21 +2,13 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { ExtensionEntry } from './ExtensionEntry';
+import type { BadgerBaseAttributes } from './BadgerBaseAttributes';
 
-export type Collection = {
-    /**
-     * ID of the collection in the data store
-     */
-    id?: string;
+export type Collection = (BadgerBaseAttributes & {
     /**
      * The display name of the collection
      */
     name?: string;
-    /**
-     * The unique code used in the URL to identify the collection
-     */
-    seoName?: string;
     /**
      * A short description of the collection
      */
@@ -37,9 +29,5 @@ export type Collection = {
      * base sorting ordinal - larger numbers are displayed first when collections are shown in a list
      */
     displayOrder?: number;
-    /**
-     * Optional data associated with the product for inclusion on the page.
-     */
-    extensionData?: Array<ExtensionEntry>;
-};
+});
 

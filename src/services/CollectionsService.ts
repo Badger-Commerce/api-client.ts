@@ -3,7 +3,7 @@
 /* eslint-disable */
 import type { Collection } from '../models/Collection';
 import type { CollectionPage } from '../models/CollectionPage';
-import type { Product } from '../models/Product';
+import type { ProductPage } from '../models/ProductPage';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -45,14 +45,14 @@ export class CollectionsService {
      * Fetches the children of a category specified by the seoName for the current store.
      * @param seoName Seo Name of the collection in the data store
      * @param generateExtensions
-     * @returns Collection A Collection object
+     * @returns CollectionPage A Collection object
      * @returns any Unexpected error
      * @throws ApiError
      */
     public getCollectionChildren(
         seoName: string,
         generateExtensions?: boolean,
-    ): CancelablePromise<Array<Collection> | any> {
+    ): CancelablePromise<CollectionPage | any> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/collection/{seoName}/children',
@@ -158,7 +158,7 @@ export class CollectionsService {
      * @param seoName ID of the collection in the data store
      * @param pageSize The number of results to return in a page. If it isn't specified then a configured default will be returned.
      * @param pageNumber The page of results to be returned, with a 0-based index (i.e. the first page is page 0, then page 1, 2, etc.).  Defaults to 0 if not supplied.
-     * @returns Product An array of products
+     * @returns ProductPage An array of products
      * @returns any Unexpected error
      * @throws ApiError
      */
@@ -166,7 +166,7 @@ export class CollectionsService {
         seoName: string,
         pageSize?: number,
         pageNumber?: number,
-    ): CancelablePromise<Array<Product> | any> {
+    ): CancelablePromise<ProductPage | any> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/collection/{seoName}/products',
