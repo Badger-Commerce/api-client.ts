@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/Badger-Commerce/api-client.ts/compare/v1.5.1...v1.6.0) (2023-06-26)
+
+
+### Features
+
+* refactor of APIs ([950dc52](https://github.com/Badger-Commerce/api-client.ts/commit/950dc520aeb425a409eb0eacc84ad67a6833bae5))
+
 ## [1.5.1](https://github.com/Badger-Commerce/api-client.ts/compare/v1.5.0...v1.5.1) (2023-05-19)
 
 
